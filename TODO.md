@@ -1,7 +1,8 @@
 # 0.1 Navigation
 
 - [ ] Make async **for real**
-  - [ ] Probably use [rxpython](https://github.com/mikhtonyuk/rxpython)
+  - [ ] ~~Probably use [rxpython](https://github.com/mikhtonyuk/rxpython)~~
+  - [ ] Use pythons `async`/`await`
 - [ ] Implement Go To Symbol
  - [x] Same Project
  - [ ] Different project with local source
