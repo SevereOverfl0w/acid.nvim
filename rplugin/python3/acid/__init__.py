@@ -1,6 +1,7 @@
 # encoding:utf-8
 """ Acid stands for Asynchronous Clojure Interactive Development. """
 import neovim
+import asyncio
 from acid.nvim import (
     get_port_no, output_to_window, path_to_ns,
     find_file_in_path
@@ -17,12 +18,14 @@ class Acid(object):
 
     def __init__(self, nvim):
         self.nvim = nvim
+        self.loop = asyncio.get_event_loop()
 
     @neovim.function("AcidEval")
     def acid_eval(self, data):
         handler = output_to_window(self.nvim)
         port_no = get_port_no(self.nvim)
-        send(port_no, handler, **data[0])
+        sx = send(port_no, **data[0])
+        loop.run_until_complete(handler(sx))
 
     @neovim.function("AcidGoTo")
     def acid_goto(self, data):

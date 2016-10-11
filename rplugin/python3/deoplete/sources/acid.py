@@ -6,7 +6,7 @@ import sys, os
 
 sys.path.append(os.path.dirname(os.path.relpath(__file__)))
 
-from acid_core.base import send
+from acid_core.base import sync_send
 from acid_core.nvim import get_port_no, get_acid_ns
 from .base import Base
 import nrepl
@@ -65,7 +65,7 @@ class Source(Base):
 
         ns = get_acid_ns(self.nvim)
 
-        ret = send(
+        ret = sync_send(
             port_no,
             handler,
             **{"op": "complete",
