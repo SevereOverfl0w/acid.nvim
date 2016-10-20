@@ -15,7 +15,23 @@ class Acid(object):
         self.nvim = nvim
         self.sessions = SessionHandler()
         self.handlers = {}
+        self._init = False
+
+
+    @neovim.command("AcidInit", bang=True)
+    def init(self, bang=True):
         self.init_handlers()
+        self.init_vars()
+        self._init = True
+
+    def init_vars(self):
+        def init_var(var, default=0):
+            self.nvim.vars[var] = self.nvim.vars.get(var, default)
+
+        [init_var(i, j)
+         for i, j
+         in [('acid_auto_require', 1),
+             ('acid_namespace', 'user')]]
 
     def init_handlers(self):
         for path in find_extensions(self.nvim, 'handlers'):
