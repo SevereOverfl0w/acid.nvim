@@ -1,5 +1,5 @@
 function! s:require()
-  if (exists('g:acid_auto_require'))
+  if (exists('g:acid_auto_require') && expand('%') !~ 'test/.*_test.clj')
     AcidRequire
   endif
 endfunction
