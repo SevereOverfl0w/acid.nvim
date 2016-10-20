@@ -104,4 +104,4 @@ class Acid(object):
         if pwd not in self.repls or bang:
             fn = nv.vars['acid_start_repl_fn']
             args = nv.vars['acid_start_repl_args']
-            nv.call(fn, *args)
+            self.repls[pwd] = nv.call(fn, *args)
