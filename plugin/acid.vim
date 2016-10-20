@@ -21,6 +21,7 @@ function! s:start_repls()
   if (exists('g:acid_auto_start_repl')
         \ && g:acid_auto_start_repl)
     AcidStartRepl
+  endif
 endfunction
 
 augroup acid
