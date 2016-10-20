@@ -6,11 +6,10 @@ class Handler(BaseHandler):
 
     name = "Proto"
 
-    def __init__(self, nvim):
+    def on_init(self):
         self.buf_nr = None
-        self.nvim = nvim
 
-    def on_pre_handle(self):
+    def on_pre_handle(self, *_):
         if self.buf_nr is None or self.nvim.funcs.winbufnr(self.buf_nr) == -1:
             self.nvim.command(
                 "topleft vertical split | enew | setlocal nolist"

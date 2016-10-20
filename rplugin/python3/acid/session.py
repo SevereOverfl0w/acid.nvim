@@ -45,7 +45,7 @@ class SessionHandler(object):
         matches.update({"id": msg_id})
         conn.watch(watcher_key, matches, patched_handler)
 
-        handler.pre_handle()
+        handler.pre_handle(url, msg_id)
 
     def send(self, url, data):
         conn = self.get_or_create(url)

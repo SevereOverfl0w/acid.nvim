@@ -4,10 +4,13 @@ class BaseHandler(object):
     __instances__ = {}
     finalizer = lambda msg, *_: 'status' in msg
 
+    def __init__(self, nvim):
+        self.nvim = nvim
+
     def on_init(self):
         pass
 
-    def on_pre_handle(self):
+    def on_pre_handle(self, *_):
         pass
 
     @staticmethod
@@ -21,9 +24,9 @@ class BaseHandler(object):
         cls.__instances__[cls.name] = inst
 
     @classmethod
-    def pre_handle(cls):
+    def pre_handle(cls, *args):
         inst = cls.__instances__[cls.name]
-        inst.on_pre_handle()
+        inst.on_pre_handle(*args)
 
     @classmethod
     def gen_handler(cls, stop_handler):

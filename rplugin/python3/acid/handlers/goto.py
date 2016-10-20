@@ -6,9 +6,6 @@ class Handler(BaseHandler):
 
     name = "Goto"
 
-    def __init__(self, nvim):
-        self.nvim = nvim
-
     def on_handle(self, msg, *_):
         if 'file' in msg:
             f = find_file_in_path(self.nvim, msg)
