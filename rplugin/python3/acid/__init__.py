@@ -19,7 +19,7 @@ class Acid(object):
         self._init = False
 
 
-    @neovim.command("AcidInit", bang=True)
+    @neovim.command("AcidInit")
     def init(self, bang=True):
         self.init_handlers()
         self.init_vars()
@@ -31,7 +31,10 @@ class Acid(object):
 
         [init_var(i, j)
          for i, j
-         in [('acid_auto_require', 1),
+         in [
+             ('acid_loaded', 1),
+             ('acid_auto_require', 1),
+             ('acid_auto_start_repl', 0),
              ('acid_namespace', 'user'),
              ('acid_start_repl_fn', 'jobstart'),
              ('acid_start_repl_args', ['lein repl'])]]
@@ -102,5 +105,3 @@ class Acid(object):
             fn = nv.vars['acid_start_repl_fn']
             args = nv.vars['acid_start_repl_args']
             nv.call(fn, *args)
-        else:
-            nv.command('echom "REPL is already open"')
